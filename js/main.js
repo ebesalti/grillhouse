@@ -11,31 +11,35 @@
        Är värdet tomt visas "Snart" istället för en nedräkning.
   ------------------------------------------------------------ */
   var ORDER_URL    = "";
-  var OPENING_DATE = ""; // ex: "2026-08-15T12:00:00+02:00"
+  var OPENING_DATE = "2026-06-01T11:00:00+02:00"; // 1 juni 2026, kl. 11:00
 
   /* --- Aktuellt år i sidfoten --- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   /* --- Mobilmeny --- */
-  var toggle = document.getElementById("nav-toggle");
-  var links  = document.getElementById("nav-links");
+  var toggle   = document.getElementById("nav-toggle");
+  var links    = document.getElementById("nav-links");
+  var backdrop = document.getElementById("nav-backdrop");
 
-  function closeMenu() {
+  function setMenu(open) {
     if (!links || !toggle) return;
-    links.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "Öppna meny");
+    links.classList.toggle("is-open", open);
+    if (backdrop) backdrop.classList.toggle("is-open", open);
+    document.body.classList.toggle("is-locked", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "Stäng meny" : "Öppna meny");
   }
+  function closeMenu() { setMenu(false); }
+
   if (toggle && links) {
     toggle.addEventListener("click", function () {
-      var open = links.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Stäng meny" : "Öppna meny");
+      setMenu(!links.classList.contains("is-open"));
     });
     links.addEventListener("click", function (e) {
       if (e.target.closest("a")) closeMenu();
     });
+    if (backdrop) backdrop.addEventListener("click", closeMenu);
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeMenu();
     });

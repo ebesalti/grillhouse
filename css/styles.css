@@ -226,7 +226,21 @@ section { scroll-margin-top: 96px; }
 .nav__toggle {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: 0; padding: 8px; cursor: pointer;
+  position: relative;
+  z-index: 95; /* måste ligga ovanför draweret (z:90) annars går den inte att tappa */
 }
+.nav__cta-mobile { display: none; }
+.nav__backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, .6);
+  backdrop-filter: blur(2px);
+  z-index: 85;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--ease);
+}
+.nav__backdrop.is-open { opacity: 1; pointer-events: auto; }
+body.is-locked { overflow: hidden; }
 .nav__toggle span {
   width: 26px; height: 3px;
   background: var(--cream);
@@ -628,21 +642,24 @@ section { scroll-margin-top: 96px; }
 .hours__time { color: var(--flame-amber); font-weight: 500; }
 .info-card__hint { margin-top: 16px; color: var(--muted); font-size: .92rem; }
 
-.map-placeholder {
+.map-embed {
+  width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  background:
-    repeating-linear-gradient(45deg, rgba(58, 49, 31, .2) 0 14px, transparent 14px 28px),
-    var(--surface-2);
-  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  display: block;
+  filter: grayscale(.25) contrast(1.04) brightness(.95);
+  transition: filter .3s var(--ease);
 }
-.map-placeholder span {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 14px; color: var(--muted);
+.map-embed:hover { filter: grayscale(0) contrast(1) brightness(1); }
+.text-link {
+  color: var(--flame-amber);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color .2s var(--ease);
 }
+.text-link:hover { color: var(--flame-yellow); }
 
 /* ---------- Kontakt ---------- */
 .contact {
@@ -895,6 +912,20 @@ section { scroll-margin-top: 96px; }
   .divider { padding: 18px 0; }
 
   .nav__toggle { display: flex; }
+  .nav__cta-mobile {
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: 12px;
+    padding: 9px 14px;
+    font-size: 12px;
+    letter-spacing: .5px;
+    gap: 6px;
+  }
+  .nav__cta-mobile svg { width: 14px; height: 14px; }
+  @media (max-width: 360px) {
+    .nav__cta-mobile span { display: none; }
+    .nav__cta-mobile { padding: 9px 11px; }
+  }
   .nav__links {
     position: fixed;
     top: 0; right: 0;
