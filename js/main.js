@@ -4,12 +4,14 @@
 (function () {
   "use strict";
 
-  /* --- Beställningslänk ---------------------------------------
-     Lägg in den riktiga URL:en för online-beställning här när den
-     är klar. Så länge värdet är tomt ("#") visas ett meddelande
-     om att tjänsten öppnar snart.
+  /* --- Konfiguration ----------------------------------------
+     ORDER_URL: lägg in URL:en till online-beställningen här.
+       Så länge värdet är tomt visas en notis om att den öppnar snart.
+     OPENING_DATE: ISO-datum för premiären (t.ex. "2026-08-15").
+       Är värdet tomt visas "Snart" istället för en nedräkning.
   ------------------------------------------------------------ */
-  var ORDER_URL = "";
+  var ORDER_URL    = "";
+  var OPENING_DATE = ""; // ex: "2026-08-15T12:00:00+02:00"
 
   /* --- Aktuellt år i sidfoten --- */
   var yearEl = document.getElementById("year");
@@ -17,7 +19,7 @@
 
   /* --- Mobilmeny --- */
   var toggle = document.getElementById("nav-toggle");
-  var links = document.getElementById("nav-links");
+  var links  = document.getElementById("nav-links");
 
   function closeMenu() {
     if (!links || !toggle) return;
@@ -25,7 +27,6 @@
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Öppna meny");
   }
-
   if (toggle && links) {
     toggle.addEventListener("click", function () {
       var open = links.classList.toggle("is-open");
@@ -44,36 +45,87 @@
   var nav = document.getElementById("nav");
   function onScroll() {
     if (nav) nav.classList.toggle("is-scrolled", window.scrollY > 12);
-  }
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  /* --- Beställningsknappar --- */
-  var toast = document.getElementById("toast");
-  var toastTimer;
-  function showToast(msg) {
-    if (!toast) return;
-    toast.textContent = msg;
-    toast.classList.add("is-visible");
-    window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(function () {
-      toast.classList.remove("is-visible");
-    }, 4000);
+    updateFloatingCta();
   }
 
-  var orderBtns = document.querySelectorAll("[data-order-cta]");
-  orderBtns.forEach(function (btn) {
-    if (ORDER_URL) {
-      btn.setAttribute("href", ORDER_URL);
-      btn.setAttribute("target", "_blank");
-      btn.setAttribute("rel", "noopener");
-    } else {
-      btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        showToast("Online-beställning öppnar snart – håll utkik!");
-        closeMenu();
-      });
+  /* --- Nedräkning --- */
+  var cdRoot   = document.querySelector("[data-countdown]");
+  var cdDays   = document.querySelector("[data-cd-days]");
+  var cdHours  = document.querySelector("[data-cd-hours]");
+  var cdMins   = document.querySelector("[data-cd-mins]");
+  var cdText   = document.querySelector("[data-countdown-text]");
+  var cdBadge  = document.querySelector("[data-countdown-badge]");
+  var cdChip   = document.querySelector("[data-countdown-chip]");
+  var openingTs = OPENING_DATE ? new Date(OPENING_DATE).getTime() : NaN;
+
+  function setAll(text) {
+    if (cdText)  cdText.textContent  = text;
+    if (cdBadge) cdBadge.textContent = text;
+    if (cdChip)  cdChip.textContent  = text;
+  }
+
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
+
+  function renderCountdown() {
+    if (!openingTs || isNaN(openingTs)) {
+      setAll("Öppnar snart");
+      if (cdRoot) cdRoot.hidden = true;
+      return;
     }
+    var diff = openingTs - Date.now();
+    if (diff <= 0) {
+      setAll("Vi har öppet!");
+      if (cdRoot) cdRoot.hidden = true;
+      return;
+    }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000) / 60000);
+
+    if (cdRoot)  cdRoot.hidden = false;
+    if (cdDays)  cdDays.textContent  = pad(days);
+    if (cdHours) cdHours.textContent = pad(hours);
+    if (cdMins)  cdMins.textContent  = pad(mins);
+
+    var label = "Öppnar om " + days + (days === 1 ? " dag" : " dagar");
+    setAll(label);
+  }
+  renderCountdown();
+  setInterval(renderCountdown, 30 * 1000);
+
+  /* --- Glödande partiklar (embers) --- */
+  function spawnEmbers(container, count) {
+    if (!container) return;
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < count; i++) {
+      var e = document.createElement("span");
+      e.className = "ember";
+      var size = 3 + Math.random() * 4;
+      e.style.left = (Math.random() * 100) + "%";
+      e.style.width = e.style.height = size + "px";
+      e.style.setProperty("--dx", ((Math.random() - 0.5) * 120) + "px");
+      e.style.setProperty("--rise", (320 + Math.random() * 360) + "px");
+      e.style.animationDuration = (5 + Math.random() * 5) + "s";
+      e.style.animationDelay    = (Math.random() * 8) + "s";
+      frag.appendChild(e);
+    }
+    container.appendChild(frag);
+  }
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    spawnEmbers(document.getElementById("embers"), 22);
+    spawnEmbers(document.getElementById("embers-cta"), 14);
+  }
+
+  /* --- Stagger-fördröjning ----------------------------------
+     Sätter --reveal-delay i ms på varje [data-reveal] som är
+     barn till ett [data-reveal-stagger]-element.
+  ------------------------------------------------------------ */
+  document.querySelectorAll("[data-reveal-stagger]").forEach(function (group) {
+    var step = parseInt(group.getAttribute("data-stagger") || "90", 10);
+    var children = group.querySelectorAll("[data-reveal]");
+    children.forEach(function (el, i) {
+      el.style.setProperty("--reveal-delay", (i * step) + "ms");
+    });
   });
 
   /* --- Scroll-in animationer --- */
@@ -101,13 +153,73 @@
         if (!entry.isIntersecting) return;
         var id = entry.target.getAttribute("id");
         navLinks.forEach(function (link) {
-          link.classList.toggle(
-            "is-active",
-            link.getAttribute("href") === "#" + id
-          );
+          link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
         });
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* --- Flytande mobil-CTA --- */
+  var floatingCta = document.getElementById("floating-cta");
+  var hero        = document.getElementById("hem");
+  function updateFloatingCta() {
+    if (!floatingCta || !hero) return;
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    floatingCta.classList.toggle("is-visible", heroBottom < 60);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* --- Beställningsknappar --- */
+  var toast = document.getElementById("toast");
+  var toastTimer;
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("is-visible");
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () {
+      toast.classList.remove("is-visible");
+    }, 4000);
+  }
+
+  document.querySelectorAll("[data-order-cta]").forEach(function (btn) {
+    if (ORDER_URL) {
+      btn.setAttribute("href", ORDER_URL);
+      btn.setAttribute("target", "_blank");
+      btn.setAttribute("rel", "noopener");
+    } else {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        showToast("Online-beställning öppnar snart – håll utkik!");
+        closeMenu();
+      });
+    }
+  });
+
+  /* --- Nyhetsbrev (placeholder)
+     Sparar mejl i localStorage. Byt ut mot en riktig backend
+     (Mailchimp/Brevo/eget API) när det är klart.
+  ------------------------------------------------------------ */
+  var newsletter = document.getElementById("newsletter");
+  if (newsletter) {
+    newsletter.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = newsletter.querySelector('input[type="email"]');
+      var email = (input.value || "").trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.focus();
+        showToast("Skriv en giltig mejladress.");
+        return;
+      }
+      try {
+        var list = JSON.parse(localStorage.getItem("grillhouse_newsletter") || "[]");
+        if (list.indexOf(email) === -1) list.push(email);
+        localStorage.setItem("grillhouse_newsletter", JSON.stringify(list));
+      } catch (_) { /* ignore */ }
+      input.value = "";
+      showToast("Tack! Vi hör av oss när vi öppnar.");
+    });
   }
 })();
