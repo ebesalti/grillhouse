@@ -39,7 +39,13 @@
 /* ---------- Bas ---------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* Förhindra horisontell scroll – t.ex. från drawer som ligger fixed utanför viewport */
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 
 body {
   background: var(--bg);
@@ -49,6 +55,8 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
   /* Subtil kol-/grynstruktur */
   background-image:
     radial-gradient(ellipse 80% 50% at 50% 0%, rgba(226, 100, 30, .06), transparent 60%),
