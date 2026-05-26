@@ -567,19 +567,48 @@ body.is-locked { overflow: hidden; }
 .menu-card:hover::before { opacity: 1; }
 .menu-card > * { position: relative; }
 
-.menu-card__title {
-  font-size: 1.4rem;
+.menu-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding-bottom: 12px;
   margin-bottom: 14px;
   border-bottom: 2px solid var(--border);
+}
+.menu-card__title {
+  font-size: 1.35rem;
   color: var(--flame-amber);
 }
-.menu-list { list-style: none; }
-.menu-list li {
-  display: flex; align-items: baseline; gap: 8px;
-  padding: 9px 0;
+.menu-card__tag {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .5px;
+  color: var(--flame-amber);
+  background: var(--flame-soft);
+  border: 1px solid rgba(242, 168, 59, .35);
+  padding: 5px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
+.menu-card__sub {
+  font-size: .86rem;
+  color: var(--muted);
+  margin: -6px 0 14px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.menu-list { list-style: none; }
+.menu-list li { padding: 9px 0; }
 .menu-list li + li { border-top: 1px dashed rgba(58, 49, 31, .8); }
+
+.menu-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
 .menu-item { font-weight: 500; color: var(--text); }
 .menu-dots {
   flex: 1;
@@ -588,9 +617,56 @@ body.is-locked { overflow: hidden; }
 }
 .menu-price {
   font-family: var(--font-display);
-  font-weight: 600; color: var(--muted);
+  font-weight: 600;
+  color: var(--cream);
   white-space: nowrap;
 }
+.menu-desc {
+  margin-top: 4px;
+  font-size: .84rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.menu-list--simple li { padding: 6px 0; }
+.menu-list--cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 18px;
+  row-gap: 2px;
+}
+.menu-list--cols li {
+  border-top: 0 !important;
+  padding: 5px 0;
+}
+
+.menu-section { margin-top: 22px; }
+.menu-section:first-of-type { margin-top: 0; }
+.menu-section__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.menu-section__price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .5px;
+  color: var(--flame-amber);
+  background: var(--flame-soft);
+  border: 1px solid rgba(242, 168, 59, .35);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
 .menu-cta { text-align: center; margin-top: 46px; }
 
 /* ---------- Galleri ---------- */

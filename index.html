@@ -45,7 +45,7 @@
     "servesCuisine": ["Burgare", "Grill", "Kebab"],
     "image": "https://grillhouse-nyhamnslage.se/assets/logo.jpg",
     "url": "https://grillhouse-nyhamnslage.se/",
-    "telephone": "",
+    "telephone": "+46761961055",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
@@ -221,13 +221,13 @@
             <span class="info-chip__value">Nyhamnsläge, Höganäs</span>
           </div>
         </div>
-        <div class="info-chip" data-reveal>
+        <a class="info-chip" href="tel:+46761961055" data-reveal>
           <svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg>
           <div>
             <span class="info-chip__label">Telefon</span>
-            <span class="info-chip__value muted">Uppdateras snart</span>
+            <span class="info-chip__value">076-196 10 55</span>
           </div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -286,73 +286,233 @@
         <div class="section__head" data-reveal>
           <span class="eyebrow">Meny</span>
           <h2>Vad vi serverar</h2>
-          <span class="section__script">- ett smakprov -</span>
-          <p class="section__note">
-            Vår fullständiga meny, priser och bilder publiceras inom kort. Nedan ser du våra kategorier –
-            innehållet uppdateras innan öppning.
-          </p>
+          <span class="section__script">- från grillen till dig -</span>
+          <p class="section__note">Bilder på rätterna publiceras inför öppningen.</p>
         </div>
 
         <div class="menu-grid" data-reveal-stagger>
+
+          <!-- Smashburgare -->
           <article class="menu-card" data-reveal>
-            <h3 class="menu-card__title">Burgare</h3>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">Smashburgare</h3>
+            </header>
+            <p class="menu-card__sub">Krispsallad, tomat, saltgurka, lök, hamburgerdressing</p>
             <ul class="menu-list">
-              <li><span class="menu-item">Grillhouse Classic</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Cheeseburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Baconburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Crispy Chicken Burger</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Cheeseburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">100 g kött, cheddarost</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Double Cheeseburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">160 kr</span></div>
+                <p class="menu-desc">200 g kött, cheddarost</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Bacon Cheeseburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">100 g kött, bacon, cheddarost</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Chili Cheeseburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">100 g kött, jalapeño, chili cheese tops, cheddarost, tryffelmayo</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">BBQ-burgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">100 g kött, karamelliserad lök, BBQ-sås, cheddarost</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Tryffelburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">100 g kött, tryffelmayo, lökringar, cheddarost</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Crispy Chicken Burger</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">Krispig kyckling, cheddarost</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Spicy Chicken Burger</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">Krispig kyckling, jalapeño, tacosås, crispy lök, cheddarost</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Veganburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div>
+                <p class="menu-desc">Veganbiff, BBQ-sås, karamelliserad lök</p>
+              </li>
+              <li>
+                <div class="menu-row"><span class="menu-item">Mega Grille Tower</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">190 kr</span></div>
+                <p class="menu-desc">300 g kött, cheddarost, bacon</p>
+              </li>
             </ul>
           </article>
 
+          <!-- 200 g Högrevsburgare -->
           <article class="menu-card" data-reveal>
-            <h3 class="menu-card__title">Smashburgers</h3>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">200 g Högrevsburgare</h3>
+              <span class="menu-card__tag">170 kr</span>
+            </header>
+            <p class="menu-card__sub">Krispsallad, tomat, gurka, lök, hamburgerdressing</p>
             <ul class="menu-list">
-              <li><span class="menu-item">Single Smash</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Double Smash</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Smash Deluxe</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Spicy Smash</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
+              <li>
+                <span class="menu-item">Originalburgare</span>
+                <p class="menu-desc">200 g högrev, bacon</p>
+              </li>
+              <li>
+                <span class="menu-item">Äggburgare</span>
+                <p class="menu-desc">200 g högrev, bacon, ägg</p>
+              </li>
+              <li>
+                <span class="menu-item">Mexicanburgare</span>
+                <p class="menu-desc">200 g högrev, jalapeño, tacosås</p>
+              </li>
+              <li>
+                <span class="menu-item">Hot-burgare</span>
+                <p class="menu-desc">200 g högrev, jalapeño, tacosås, stark salami</p>
+              </li>
+              <li>
+                <span class="menu-item">Texas-burgare</span>
+                <p class="menu-desc">200 g högrev, BBQ-sås</p>
+              </li>
             </ul>
           </article>
 
+          <!-- Standardburgare -->
           <article class="menu-card" data-reveal>
-            <h3 class="menu-card__title">Grillrätter</h3>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">Standardburgare</h3>
+            </header>
             <ul class="menu-list">
-              <li><span class="menu-item">Grillad entrecôte</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">BBQ Spareribs</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Grillad kycklingfilé</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Blandtallrik från grillen</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
+              <li><div class="menu-row"><span class="menu-item">90 g hamburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">125 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">150 g hamburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">135 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Halloumiburgare</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">135 kr</span></div></li>
             </ul>
           </article>
 
+          <!-- À la carte -->
           <article class="menu-card" data-reveal>
-            <h3 class="menu-card__title">Sallader</h3>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">À la carte</h3>
+            </header>
+            <p class="menu-card__sub">Med isberg, tomat, gurka, lök, majs, peperoni, paprika, pommes eller stekt potatis, bearnaisesås och potatissallad</p>
             <ul class="menu-list">
-              <li><span class="menu-item">Caesarsallad</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Kycklingsallad</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Halloumisallad</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Grillhouse-sallad</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
+              <li><div class="menu-row"><span class="menu-item">Entrecôte</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">270 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Ryggbiff</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">220 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Schnitzel</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">190 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Kycklingschnitzel</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">180 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Vegetarisk schnitzel</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">180 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Rödspätta</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">180 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Fish &amp; Chips</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">180 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Kycklingspett</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">180 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Köttbullar</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">130 kr</span></div></li>
             </ul>
           </article>
 
+          <!-- Kebabmeny -->
           <article class="menu-card" data-reveal>
-            <h3 class="menu-card__title">Kebabrätter</h3>
-            <ul class="menu-list">
-              <li><span class="menu-item">Kebabtallrik</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Kebabrulle</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Kebab i bröd</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Kebab Box</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">Kebabmeny</h3>
+              <span class="menu-card__tag">120 kr</span>
+            </header>
+            <p class="menu-card__sub">Med isbergsallad, tomat, gurka, lök, peperoni</p>
+            <ul class="menu-list menu-list--simple">
+              <li><span class="menu-item">Kebab i bröd</span></li>
+              <li><span class="menu-item">Kebabrulle</span></li>
+              <li><span class="menu-item">Kebabtallrik</span></li>
+              <li><span class="menu-item">Kyckling i bröd</span></li>
+              <li><span class="menu-item">Kycklingrulle</span></li>
+              <li><span class="menu-item">Kycklingtallrik</span></li>
+              <li><span class="menu-item">Falafel i bröd</span></li>
+              <li><span class="menu-item">Falafelrulle</span></li>
+              <li><span class="menu-item">Falafeltallrik</span></li>
+              <li><span class="menu-item">Halloumirulle</span></li>
+              <li><span class="menu-item">Halloumitallrik</span></li>
+              <li><span class="menu-item">Nuggettallrik</span></li>
             </ul>
           </article>
 
+          <!-- Sallader -->
           <article class="menu-card" data-reveal>
-            <h3 class="menu-card__title">Snacks &amp; tillbehör</h3>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">Sallader</h3>
+              <span class="menu-card__tag">135 kr</span>
+            </header>
+            <p class="menu-card__sub">Med isberg, tomat, gurka, lök, majs, paprika</p>
             <ul class="menu-list">
-              <li><span class="menu-item">Pommes frites</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Lökringar</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Mozzarellasticks</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
-              <li><span class="menu-item">Chicken nuggets</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">– kr</span></li>
+              <li>
+                <span class="menu-item">Kebabsallad</span>
+                <p class="menu-desc">peperoni</p>
+              </li>
+              <li>
+                <span class="menu-item">Kycklingsallad</span>
+                <p class="menu-desc">ägg</p>
+              </li>
+              <li>
+                <span class="menu-item">Tonfisksallad</span>
+                <p class="menu-desc">ägg</p>
+              </li>
+              <li>
+                <span class="menu-item">Caesarsallad</span>
+                <p class="menu-desc">krutonger, bacon, parmesan</p>
+              </li>
+              <li>
+                <span class="menu-item">Halloumisallad</span>
+              </li>
             </ul>
           </article>
+
+          <!-- Dipsåser -->
+          <article class="menu-card" data-reveal>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">Dipsåser</h3>
+              <span class="menu-card__tag">10 kr</span>
+            </header>
+            <ul class="menu-list menu-list--simple menu-list--cols">
+              <li><span class="menu-item">Vitlökssås</span></li>
+              <li><span class="menu-item">Mild sås</span></li>
+              <li><span class="menu-item">Stark vitlökssås</span></li>
+              <li><span class="menu-item">Bearnaisesås</span></li>
+              <li><span class="menu-item">Tryffelmayo</span></li>
+              <li><span class="menu-item">BBQ-sås</span></li>
+              <li><span class="menu-item">Chili bearnaisesås</span></li>
+            </ul>
+          </article>
+
+          <!-- Drycker & Milkshakes -->
+          <article class="menu-card" data-reveal>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">Drycker &amp; Milkshakes</h3>
+            </header>
+            <div class="menu-section">
+              <h4 class="menu-section__title">Pepsi-sortimentet</h4>
+              <ul class="menu-list">
+                <li><div class="menu-row"><span class="menu-item">33 cl</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">25 kr</span></div></li>
+                <li><div class="menu-row"><span class="menu-item">50 cl</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">30 kr</span></div></li>
+                <li><div class="menu-row"><span class="menu-item">1,5 L</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">40 kr</span></div></li>
+              </ul>
+            </div>
+            <div class="menu-section">
+              <h4 class="menu-section__title">Milkshake <span class="menu-section__price">70 kr</span></h4>
+              <ul class="menu-list menu-list--simple menu-list--cols">
+                <li><span class="menu-item">Mango</span></li>
+                <li><span class="menu-item">Jordgubb</span></li>
+                <li><span class="menu-item">Vanilj</span></li>
+                <li><span class="menu-item">Oreo</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Tillval & extra -->
+          <article class="menu-card" data-reveal>
+            <header class="menu-card__head">
+              <h3 class="menu-card__title">Tillval &amp; extra</h3>
+            </header>
+            <ul class="menu-list">
+              <li><div class="menu-row"><span class="menu-item">Bacon</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">10 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Ost</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">10 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Salami</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">10 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Extra kött</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">30 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Glutenfritt bröd</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">20 kr</span></div></li>
+              <li><div class="menu-row"><span class="menu-item">Pommes tallrik</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">50 kr</span></div></li>
+            </ul>
+          </article>
+
         </div>
 
         <div class="menu-cta" data-reveal>
@@ -450,7 +610,7 @@
               <svg width="22" height="22"><use href="#i-phone"/></svg>
             </span>
             <h3>Telefon</h3>
-            <p><span class="muted">Telefonnummer uppdateras snart</span></p>
+            <p><a class="text-link" href="tel:+46761961055">076-196 10 55</a></p>
           </div>
           <div class="contact__item" data-reveal>
             <span class="contact__icon" aria-hidden="true">
