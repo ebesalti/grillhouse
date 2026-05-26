@@ -117,7 +117,6 @@
   }
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     spawnEmbers(document.getElementById("embers"), 22);
-    spawnEmbers(document.getElementById("embers-cta"), 14);
   }
 
   /* --- Stagger-fördröjning ----------------------------------
@@ -202,28 +201,4 @@
     }
   });
 
-  /* --- Nyhetsbrev (placeholder)
-     Sparar mejl i localStorage. Byt ut mot en riktig backend
-     (Mailchimp/Brevo/eget API) när det är klart.
-  ------------------------------------------------------------ */
-  var newsletter = document.getElementById("newsletter");
-  if (newsletter) {
-    newsletter.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var input = newsletter.querySelector('input[type="email"]');
-      var email = (input.value || "").trim();
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        input.focus();
-        showToast("Skriv en giltig mejladress.");
-        return;
-      }
-      try {
-        var list = JSON.parse(localStorage.getItem("grillhouse_newsletter") || "[]");
-        if (list.indexOf(email) === -1) list.push(email);
-        localStorage.setItem("grillhouse_newsletter", JSON.stringify(list));
-      } catch (_) { /* ignore */ }
-      input.value = "";
-      showToast("Tack! Vi hör av oss när vi öppnar.");
-    });
-  }
 })();
