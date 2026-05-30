@@ -1,0 +1,34 @@
+name: Deploy to one.com
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-onecom
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Sync to one.com via FTPS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync files via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: ${{ vars.FTP_SERVER_DIR || '/' }}
+          local-dir: ./
+          dangerous-clean-slate: false
+          exclude: |
+            **/.github/**
+            **/.nojekyll
+            **/README.md
