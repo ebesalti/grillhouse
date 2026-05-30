@@ -6,12 +6,9 @@
 
   /* --- Konfiguration ----------------------------------------
      ORDER_URL: lägg in URL:en till online-beställningen här.
-       Så länge värdet är tomt visas en notis om att den öppnar snart.
-     OPENING_DATE: ISO-datum för premiären (t.ex. "2026-08-15").
-       Är värdet tomt visas "Snart" istället för en nedräkning.
+       Är värdet tomt visas en notis vid klick.
   ------------------------------------------------------------ */
-  var ORDER_URL    = "";
-  var OPENING_DATE = "2026-06-01T11:00:00+02:00"; // 1 juni 2026, kl. 11:00
+  var ORDER_URL = "";
 
   /* --- Aktuellt år i sidfoten --- */
   var yearEl = document.getElementById("year");
@@ -51,51 +48,6 @@
     if (nav) nav.classList.toggle("is-scrolled", window.scrollY > 12);
     updateFloatingCta();
   }
-
-  /* --- Nedräkning --- */
-  var cdRoot   = document.querySelector("[data-countdown]");
-  var cdDays   = document.querySelector("[data-cd-days]");
-  var cdHours  = document.querySelector("[data-cd-hours]");
-  var cdMins   = document.querySelector("[data-cd-mins]");
-  var cdText   = document.querySelector("[data-countdown-text]");
-  var cdBadge  = document.querySelector("[data-countdown-badge]");
-  var cdChip   = document.querySelector("[data-countdown-chip]");
-  var openingTs = OPENING_DATE ? new Date(OPENING_DATE).getTime() : NaN;
-
-  function setAll(text) {
-    if (cdText)  cdText.textContent  = text;
-    if (cdBadge) cdBadge.textContent = text;
-    if (cdChip)  cdChip.textContent  = text;
-  }
-
-  function pad(n) { return n < 10 ? "0" + n : String(n); }
-
-  function renderCountdown() {
-    if (!openingTs || isNaN(openingTs)) {
-      setAll("Öppnar snart");
-      if (cdRoot) cdRoot.hidden = true;
-      return;
-    }
-    var diff = openingTs - Date.now();
-    if (diff <= 0) {
-      setAll("Vi har öppet!");
-      if (cdRoot) cdRoot.hidden = true;
-      return;
-    }
-    var days  = Math.floor(diff / 86400000);
-    var hours = Math.floor((diff % 86400000) / 3600000);
-    var mins  = Math.floor((diff % 3600000) / 60000);
-
-    if (cdRoot)  cdRoot.hidden = false;
-    if (cdDays)  cdDays.textContent  = pad(days);
-    if (cdHours) cdHours.textContent = pad(hours);
-    if (cdMins)  cdMins.textContent  = pad(mins);
-
-    var label = "Öppnar om " + days + (days === 1 ? " dag" : " dagar");
-    setAll(label);
-  }
-  renderCountdown();
-  setInterval(renderCountdown, 30 * 1000);
 
   /* --- Glödande partiklar (embers) --- */
   function spawnEmbers(container, count) {
@@ -195,7 +147,7 @@
     } else {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
-        showToast("Online-beställning öppnar snart – håll utkik!");
+        showToast("Online-beställning är inte aktiv ännu – ring oss på 076-196 10 55");
         closeMenu();
       });
     }

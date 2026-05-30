@@ -354,13 +354,6 @@ body.is-locked { overflow: hidden; }
 
 .hero__inner { position: relative; z-index: 2; }
 
-.hero__logo {
-  width: min(540px, 86vw);
-  margin: 14px auto 0;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 12px 36px rgba(0, 0, 0, .7));
-  animation: logo-rise 1s var(--ease) both;
-}
 .hero__script {
   font-family: var(--font-brush);
   color: var(--flame-amber);
@@ -408,38 +401,6 @@ body.is-locked { overflow: hidden; }
   animation: pulse 1.8s infinite;
 }
 .badge__sub { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: .5px; }
-
-/* ---------- Nedräkning ---------- */
-.countdown {
-  display: inline-flex;
-  gap: 8px;
-  padding: 12px;
-  margin: 8px auto 26px;
-  background: rgba(33, 29, 23, .65);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  backdrop-filter: blur(6px);
-}
-.countdown[hidden] { display: none; }
-.countdown__cell {
-  min-width: 80px;
-  padding: 10px 14px;
-  background: var(--bg-darker);
-  border-radius: var(--radius-sm);
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-}
-.countdown__num {
-  font-family: var(--font-display);
-  font-size: 2rem; font-weight: 700;
-  color: var(--flame-amber);
-  line-height: 1;
-}
-.countdown__lbl {
-  font-size: .72rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--muted);
-}
 
 /* ---------- Snabbinfo-band ---------- */
 .infostrip {
@@ -1013,7 +974,7 @@ body.is-locked { overflow: hidden; }
   html { scroll-behavior: auto; }
   .js [data-reveal] { opacity: 1; transform: none; transition: none; }
   .hero__glow, .topbar__spark, .badge__dot,
-  .hero__flame, .ember, .hero__logo { animation: none !important; }
+  .hero__flame, .ember { animation: none !important; }
   .btn:hover, .feature:hover, .menu-card:hover, .gallery__item:hover, .contact__item:hover { transform: none; }
 }
 
@@ -1067,10 +1028,6 @@ body.is-locked { overflow: hidden; }
 
   .section__head { margin-bottom: 36px; }
   .hero { padding: 56px 0 80px; }
-
-  .countdown { padding: 8px; gap: 6px; }
-  .countdown__cell { min-width: 64px; padding: 8px 10px; }
-  .countdown__num { font-size: 1.5rem; }
 
   .infostrip__inner { grid-template-columns: 1fr; gap: 8px; }
   .info-chip { padding: 8px 4px; }
