@@ -11,24 +11,25 @@ concurrency:
 
 jobs:
   deploy:
-    name: Sync to one.com via FTPS
+    name: Sync to one.com via SFTP
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Sync files via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Stage files for upload
+        run: |
+          mkdir -p _deploy
+          cp -r index.html favicon.svg robots.txt sitemap.xml site.webmanifest css js assets _deploy/
+          ls -la _deploy/
+
+      - name: Upload to one.com via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          server-dir: ${{ vars.FTP_SERVER_DIR || '/' }}
-          local-dir: ./
-          dangerous-clean-slate: false
-          exclude: |
-            **/.github/**
-            **/.nojekyll
-            **/README.md
+          username: ${{ secrets.SFTP_USERNAME }}
+          server: ${{ secrets.SFTP_SERVER }}
+          port: 22
+          password: ${{ secrets.SFTP_PASSWORD }}
+          local_path: './_deploy/*'
+          remote_path: ${{ vars.SFTP_REMOTE_PATH || './webroots' }}
+          sftp_only: true
